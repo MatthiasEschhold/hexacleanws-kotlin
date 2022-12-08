@@ -1,12 +1,5 @@
 package com.hexaclean.arc.demo.lab;
 
-import com.hexaclean.arc.demo.app.vehicle.adapter.in.resource.EquipmentResource;
-import com.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleMotionDataResource;
-import com.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleResource;
-import com.hexaclean.arc.demo.app.vehicle.adapter.out.db.entity.VehicleDbEntity;
-import com.hexaclean.arc.demo.app.vehicle.adapter.out.master.data.dto.EquipmentDto;
-import com.hexaclean.arc.demo.app.vehicle.adapter.out.master.data.dto.VehicleDataDto;
-import com.hexaclean.arc.demo.app.vehicle.domain.dto.VehicleMasterDataDomainDto;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.*;
 
 import java.util.ArrayList;
@@ -23,7 +16,7 @@ public abstract class BaseExerciseTest {
     protected static final String JAVA_LANG = "..java.lang..";
     protected static final String ROOT_ENTITY_UNDER_TEST = "Vehicle";
     protected static final String DB_ENTITY_UNDER_TEST = "VehicleDbEntity";
-    protected static final String SERVICE_UNDER_TEST = "VehicleQueryService";
+    protected static final String SERVICE_UNDER_TEST = "VehicleService";
     protected static final String VALUE_OBJECT_UNDER_TEST = "Vin";
     protected static final String JAVA_UTIL = "..java.util..";
     protected static final String ORG = "..org..";
@@ -35,7 +28,7 @@ public abstract class BaseExerciseTest {
     protected static final String USECASE_OUT = "..usecase.out..";
     protected static final String USECASE_OUT_QUERY_UNDER_TEST = "VehicleDbQuery";
     protected static final String USECASE_IN_QUERY_UNDER_TEST = "VehicleQuery";
-    protected static final String REPOSITORY_UNDER_TEST = "VehicleQueryRepository";
+    protected static final String REPOSITORY_UNDER_TEST = "VehicleRepository";
     protected static final String ADAPTER_OUT = "..adapter.out..";
     protected static final String CONTROLLER_UNDER_TEST = "VehicleController";
     protected static final String LICENSE_PLATE_TEST_VALUE = "ES-EM 385";
@@ -48,95 +41,7 @@ public abstract class BaseExerciseTest {
     protected static final String VEHICLE_DOMAIN_MODEL = "..vehicle.domain.model..";
     protected static final String IO_GITHUB_DOMAINPRIMITIVES = "..io.github.domainprimitives..";
 
-    protected VehicleDbEntity createExpectedVehicleDbEntity() {
-        VehicleDbEntity dbEntity = new VehicleDbEntity();
-        dbEntity.setVin(VIN);
-        dbEntity.setLicensePlate(LICENSE_PLATE_TEST_VALUE);
-        dbEntity.setMilage(MILEAGE_TEST_VALUE);
-        return dbEntity;
+    protected Vehicle createExpectedVehicle()  {
+        return new Vehicle(new Vin(VIN));
     }
-
-    protected VehicleResource createExpectedVehicleResource() {
-        VehicleResource resource = new VehicleResource();
-        resource.setVin(VIN);
-        resource.setLicensePlate(LICENSE_PLATE_TEST_VALUE);
-        resource.setMileage(Double.valueOf(MILEAGE_TEST_VALUE));
-        resource.setVehicleModelType(VEHICLE_MODEL_TYPE_TEST_VALUE);
-        resource.setVehicleModelName(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE);
-        resource.setMileageUnit(MileageUnitValue.KM.toString());
-        resource.setVin(VIN);
-        resource.setSerialNumber(SERIAL_NUMBER_TEST_VALUE);
-        resource.setEquipmentList(createEquipmentList().stream().map(this::mapToEquipmentResource).collect(Collectors.toList()));
-        return resource;
-    }
-
-    private EquipmentResource mapToEquipmentResource(Equipment equipment) {
-        EquipmentResource resource = new EquipmentResource();
-        resource.setDescription(equipment.getDescription());
-        resource.setCode(equipment.getCode().getValue());
-        return resource;
-    }
-
-    protected VehicleDataDto createExpectedVehicleDto() {
-        VehicleDataDto vehicleDto = new VehicleDataDto();
-        vehicleDto.setBaumuster(VEHICLE_MODEL_TYPE_TEST_VALUE);
-        vehicleDto.setBaumusterDescription(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE);
-        vehicleDto.setMileageUnit(MileageUnitValue.KM.toString());
-        vehicleDto.setVinOrFin(VIN);
-        vehicleDto.setSerialNumber(SERIAL_NUMBER_TEST_VALUE);
-        return vehicleDto;
-    }
-
-    protected Vehicle createExpectedVehicle() {
-        Vehicle vehicle = new Vehicle(new Vin(VIN),
-                createExpectedVehicleMotionData());
-        VehicleMasterData masterData = createExpectedVehicleMasterData();
-        vehicle.addVehicleMasterData(masterData);
-        return vehicle;
-    }
-
-    private List<Equipment> createEquipmentList() {
-        return createEquipmentListDto().stream().map(e -> new Equipment(new EquipmentCode(e.getCode()), e.getLabel()))
-                .collect(Collectors.toList());
-    }
-
-    protected List<Equipment> createEquipmentListHas2G() {
-        List<Equipment> equipmentList = createEquipmentListDto().stream().map(e -> new Equipment(new EquipmentCode(e.getCode()), e.getLabel()))
-                .collect(Collectors.toList());
-        equipmentList.add(new Equipment(new EquipmentCode("GS200"), "2GSupportAdapter"));
-        return equipmentList;
-    }
-
-    protected VehicleMotionData createExpectedVehicleMotionData() {
-        return new VehicleMotionData(new LicensePlate(LICENSE_PLATE_TEST_VALUE),
-                new Mileage(MILEAGE_TEST_VALUE));
-    }
-
-    protected VehicleMotionDataResource createExpectedVehicleMotionDataResource() {
-        VehicleMotionDataResource resource = new VehicleMotionDataResource();
-        resource.setLicensePlate(LICENSE_PLATE_TEST_VALUE);
-        resource.setMileage(MILEAGE_TEST_VALUE);
-        return resource;
-    }
-
-    protected VehicleMasterData createExpectedVehicleMasterData() {
-        return new VehicleMasterData(
-                new VehicleModel(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE, VEHICLE_MODEL_TYPE_TEST_VALUE),
-                new SerialNumber(SERIAL_NUMBER_TEST_VALUE), new MileageUnit(MileageUnitValue.KM), createEquipmentList());
-    }
-
-    protected VehicleMasterData createExpectedVehicleMasterDataHas2G() {
-        return new VehicleMasterData(
-                new VehicleModel(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE, VEHICLE_MODEL_TYPE_TEST_VALUE),
-                new SerialNumber(SERIAL_NUMBER_TEST_VALUE), new MileageUnit(MileageUnitValue.KM), createEquipmentListHas2G());
-    }
-
-    private List<EquipmentDto> createEquipmentListDto() {
-        List<EquipmentDto> list = new ArrayList<>();
-        list.add(new EquipmentDto("CU897", "Live Traffic Assistent"));
-        list.add(new EquipmentDto("DK564", "Visual Park Assistent"));
-        list.add(new EquipmentDto("KL457", "Sports Chassis M Deluxe"));
-        return list;
-    }
-
 }

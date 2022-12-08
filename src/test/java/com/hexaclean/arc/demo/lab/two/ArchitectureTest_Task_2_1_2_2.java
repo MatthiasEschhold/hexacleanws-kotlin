@@ -27,7 +27,8 @@ public class ArchitectureTest_Task_2_1_2_2 extends BaseArchUnitExerciseTest {
                         ORG,
                         JAVA_LANG,
                         ADAPTER,
-                        ADAPTER_IN);
+                        ADAPTER_IN,
+                        KOTLIN);
         rule.check(classes);
     }
 
