@@ -1,7 +1,5 @@
 package com.hexaclean.arc.demo.lab;
 
-import com.hexaclean.arc.demo.app.vehicle.domain.model.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
