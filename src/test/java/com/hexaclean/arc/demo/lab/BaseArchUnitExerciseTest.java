@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 public abstract class BaseArchUnitExerciseTest extends BaseExerciseTest {
 
     protected JavaClasses classes;
+    protected final static String  KOTLIN = "..kotlin..";
 
     @BeforeEach
     void setUp() {

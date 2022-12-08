@@ -20,7 +20,7 @@ public class ArchitectureTest_Task_1_1 extends BaseArchUnitExerciseTest {
                 .resideInAnyPackage(VEHICLE_DOMAIN_MODEL, VEHICLE_DOMAIN)
                 .should()
                 .onlyAccessClassesThat()
-                .resideInAnyPackage(IO_GITHUB_DOMAINPRIMITIVES, VEHICLE_DOMAIN, VEHICLE_DOMAIN_MODEL, JAVA_LANG, JAVA_UTIL)
+                .resideInAnyPackage(KOTLIN, IO_GITHUB_DOMAINPRIMITIVES, VEHICLE_DOMAIN, VEHICLE_DOMAIN_MODEL, JAVA_LANG, JAVA_UTIL)
                 .andShould()
                 .dependOnClassesThat()
                 .haveSimpleName(VALUE_OBJECT_UNDER_TEST);
@@ -36,7 +36,7 @@ public class ArchitectureTest_Task_1_1 extends BaseArchUnitExerciseTest {
                 .and().resideInAnyPackage(VEHICLE_DOMAIN_MODEL, VEHICLE_DOMAIN)
                 .should()
                 .onlyAccessClassesThat()
-                .resideInAnyPackage(IO_GITHUB_DOMAINPRIMITIVES, JAVA_LANG, JAVA_UTIL, VEHICLE_DOMAIN, VEHICLE_DOMAIN_MODEL);
+                .resideInAnyPackage(KOTLIN, IO_GITHUB_DOMAINPRIMITIVES, JAVA_LANG, JAVA_UTIL, VEHICLE_DOMAIN, VEHICLE_DOMAIN_MODEL);
         rule.check(classes);
     }
 

@@ -30,7 +30,8 @@ public class ArchitectureTest_Task_3_3 extends BaseArchUnitExerciseTest {
                         "..vehicle.usecase.in..",
                         JAVA_LANG,
                         JAVA_UTIL,
-                        ORG);
+                        ORG,
+                        KOTLIN);
         rule.check(classes);
     }
 
