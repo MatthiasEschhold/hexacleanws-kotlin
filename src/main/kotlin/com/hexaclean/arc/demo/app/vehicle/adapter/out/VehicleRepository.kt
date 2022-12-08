@@ -6,23 +6,10 @@ import com.hexaclean.arc.demo.app.vehicle.usecase.out.VehicleDbQuery
 import org.springframework.stereotype.Component
 
 @Component
-class VehicleRepository(private val mapper: VehicleToVehicleDbEntityMapper) : VehicleDbQuery {
+class VehicleRepository() : VehicleDbQuery {
 
     override fun findVehicleByVin(vin: Vin): Vehicle {
-        val vehicleDbEntity: VehicleDbEntity = findVehicleDbEntity(vin)
-        return mapper.mapVehicleDbEntityToVehicle(vehicleDbEntity)
-    }
-
-    private fun createDbEntity(): VehicleDbEntity {
-        val dbEntity = VehicleDbEntity()
-        dbEntity.vin  = VIN
-        dbEntity.licensePlate = LICENSE_PLATE_TEST_VALUE
-        dbEntity.milage = MILEAGE_TEST_VALUE
-        return dbEntity
-    }
-
-    private fun findVehicleDbEntity(vin: Vin): VehicleDbEntity {
-        return createDbEntity()
+        return Vehicle(Vin(VIN));
     }
 
     companion object {

@@ -1,6 +1,6 @@
 package com.hexaclean.arc.demo.lab;
 
-import com.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleResource;
+import com.hexaclean.arc.demo.app.vehicle.adapter.in.VehicleResource;
 import com.hexaclean.arc.demo.app.vehicle.adapter.out.VehicleDbEntity;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.*;
 

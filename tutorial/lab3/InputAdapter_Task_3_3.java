@@ -2,7 +2,7 @@ package com.hexaclean.arc.demo.lab.three;
 
 import com.hexaclean.arc.demo.app.vehicle.adapter.in.VehicleController;
 import com.hexaclean.arc.demo.app.vehicle.adapter.in.VehicleToVehicleResourceMapper;
-import com.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleResource;
+import com.hexaclean.arc.demo.app.vehicle.adapter.in.VehicleResource;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
 import com.hexaclean.arc.demo.app.vehicle.usecase.in.VehicleQuery;
